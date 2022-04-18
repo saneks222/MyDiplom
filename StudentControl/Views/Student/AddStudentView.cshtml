@@ -1,0 +1,15 @@
+﻿@model StudentControl.Models.ViewModel.StudentVM;
+
+@using (Html.BeginForm("CreateStudent", "Student", FormMethod.Get))
+{
+   <input type="hidden" asp-for="GroupId" value="@Model.GroupId"/>
+   <label>Имя</label>
+   <input type="text" asp-for="Name"/>
+   <label>Фамилия</label>
+   <input type="text" asp-for="Surname"/>
+   <label>Отчество</label>
+   <input type="text" asp-for="Patronymic"/>
+   <label>Дата рождения</label>
+   <input type="date" asp-for="DateOfBirth"/>
+   <input type="submit" value="Добавить"/>
+}

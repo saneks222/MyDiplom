@@ -9,6 +9,7 @@ namespace StudentControl.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+            Database.EnsureCreated();
         }
        public DbSet<Student> Students { get; set; }
        public DbSet<Group> Groups { get; set; }

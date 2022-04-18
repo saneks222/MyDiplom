@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Group>
+
+
+
+<div class="container">
+    <div class="row">
+        @*button searc*@
+        <div class="col-4">
+            @using (Html.BeginForm("FilterGroups", "Group", FormMethod.Get))
+            {
+                <input type="text" placeholder="название группы" />
+                <input type="submit" value="Найти" />
+            }
+        </div>
+        @*cruch div for spase*@
+        <div class="col-4"></div>
+        @*button add*@
+        <div class="col-4">
+            @using (Html.BeginForm("AddGroups", "Group", FormMethod.Get))
+            {
+                <input name="name" type="text" placeholder="название группы" />
+                <input type="submit" value="Добавить" />
+            }
+        </div>
+    </div>
+    <br/>
+    <br/>
+</div>
+
+@*print info for group*@
+<div>
+    @{
+        if (Model.ToList().Count <= 0)
+        {
+            <h1>Группы не найдены</h1>
+        }
+        else
+        {
+            foreach (var group in Model)
+            {
+                <div class="iconblock-2">
+                    <a style="text-decoration:none" asp-controller="Student" asp-action="ShowGroup" asp-all-route-data='new Dictionary<string,string> { { "GroupId", @group.Id.ToString() } }'>
+                    <div class="icon">
+                        <i class="fa fa-globe">
+                            <img src="/css/people.svg" style="margin-bottom:70%" />
+                        </i>
+                    </div>
+                    <h3>@group.Name</h3>
+                    </a>
+                    @using (Html.BeginForm("DeleteGroup", "Group", FormMethod.Get))
+                    {
+                        <input name="id" type="hidden" value="@group.Id"/>
+                        <input type="submit" value="удалить" class="btn btn-danger" />
+                    }
+                </div>
+            }
+        }
+    }
+</div>

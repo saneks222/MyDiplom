@@ -1,4 +1,5 @@
-﻿using StudentControl.Data.Repositories.IRepositories;
+﻿using Microsoft.EntityFrameworkCore;
+using StudentControl.Data.Repositories.IRepositories;
 using StudentControl.Models;
 
 namespace StudentControl.Data.Repositories
@@ -14,7 +15,7 @@ namespace StudentControl.Data.Repositories
 
         public Guid Add(Student student)
         {
-            if (student != null) 
+            if (student == null) 
                 throw new Exception("Не возможно добавить пустой обьект");
             
             var currentStudent = _Db.Students.Add(student);
@@ -36,9 +37,19 @@ namespace StudentControl.Data.Repositories
 
         public IEnumerable<Student> GetAll()
         {
-            var students = _Db.Students.ToList();
+            var students = _Db.Students.Include(x=>x.Group).ToList();
 
             if(students==null)
+                throw new Exception("Данные не найдены");
+
+            return students;
+        }
+
+        public IEnumerable<Student> GetAll(Guid GroupId) 
+        {
+            var students = _Db.Students.Include(x=>x.Group).Where(x=>x.GroupId==GroupId);
+
+            if (students == null)
                 throw new Exception("Данные не найдены");
 
             return students;
