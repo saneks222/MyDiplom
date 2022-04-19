@@ -6,20 +6,28 @@
     <div class="row">
         @*button searc*@
         <div class="col-4">
-            @using (Html.BeginForm("FilterGroups", "Group", FormMethod.Get))
+            @using (Html.BeginForm("FilterGroups", "Group", FormMethod.Get,new { @class = "row g-2" }))
             {
-                <input type="text" placeholder="название группы" />
-                <input type="submit" value="Найти" />
+                <div class="col-auto">
+                    <input class="form-control" type="text" placeholder="название группы" />
+                </div>
+                <div class="col-auto">
+                    <input class="btn btn-success myBtn" type="submit" value="Найти" />
+                </div>
             }
         </div>
         @*cruch div for spase*@
         <div class="col-4"></div>
         @*button add*@
         <div class="col-4">
-            @using (Html.BeginForm("AddGroups", "Group", FormMethod.Get))
+            @using (Html.BeginForm("AddGroups", "Group", FormMethod.Get,new { @class = "row g-2" }))
             {
-                <input name="name" type="text" placeholder="название группы" />
-                <input type="submit" value="Добавить" />
+               <div class="col-auto">
+                    <input name="name" class="form-control" type="text" placeholder="название группы" />
+                </div>
+                <div class="col-auto">
+                    <input class="btn btn-success myBtn" type="submit" value="Добавить" />
+                </div>
             }
         </div>
     </div>
@@ -50,7 +58,7 @@
                     @using (Html.BeginForm("DeleteGroup", "Group", FormMethod.Get))
                     {
                         <input name="id" type="hidden" value="@group.Id"/>
-                        <input type="submit" value="удалить" class="btn btn-danger" />
+                        <input type="submit" value="удалить" class="btn btn-danger myBtnDelete" />
                     }
                 </div>
             }
