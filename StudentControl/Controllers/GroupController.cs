@@ -23,10 +23,20 @@ namespace StudentControl.Controllers
             return View(_grupRepository.GetAll()); 
         }
 
+
+
+        public IActionResult FilterGroups(string filterParam) 
+        {
+           if(filterParam==null || filterParam=="")
+                RedirectToAction("Groups");
+
+           return View("Groups", _grupRepository.GetFilterRange(filterParam));
+        }
+
         public IActionResult AddGroups(string name) 
         {
             if(name==""||name==null)
-                return View("Error");
+                RedirectToAction("Groups");
 
             var group = new Group();
             group.Name = name;

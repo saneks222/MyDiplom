@@ -55,6 +55,15 @@ namespace StudentControl.Data.Repositories
             return group;
         }
 
+        public IEnumerable<Group> GetFilterRange(string param)
+        {
+            if(param==null|| param=="")
+                return GetAll();
+
+            var result = _Db.Groups.Where(x => x.Name.ToLower().Contains(param));
+            return result;
+        }
+
         public string Remove(Guid id)
         {
             if (id == Guid.Empty)

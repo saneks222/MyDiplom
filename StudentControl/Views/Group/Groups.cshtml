@@ -9,7 +9,7 @@
             @using (Html.BeginForm("FilterGroups", "Group", FormMethod.Get,new { @class = "row g-2" }))
             {
                 <div class="col-auto">
-                    <input class="form-control" type="text" placeholder="название группы" />
+                    <input name="filterParam" class="form-control" type="text" placeholder="название группы" />
                 </div>
                 <div class="col-auto">
                     <input class="btn btn-success myBtn" type="submit" value="Найти" />

@@ -8,6 +8,8 @@ namespace StudentControl.Data.Repositories.IRepositories
 
         public IEnumerable<Group> GetAll();
 
+        public IEnumerable<Group> GetFilterRange(string param);
+
         public string Remove(Guid id);
 
         public Group UpdateById(Guid id, Group group);
