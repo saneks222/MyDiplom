@@ -94,3 +94,7 @@ body {
 .myBtnDelete {
     background-color: #F07167;
 }
+
+.myInput {
+    width:100%;
+}

@@ -10,12 +10,12 @@
     {
         <table class="table table-hover">
 
-            <tr style="background-color:#CD0074"> <th class="text-white">Фамилия</th> <th class="text-white">Имя</th> <th class="text-white">Отчество</th> <th class="text-white">Дата Рождения</th> <th></th> <th><a asp-controller="Student" asp-action="AddStudentView" asp-all-route-data='new Dictionary<string,string> { { "GroupId", ViewBag.GroupId.ToString() } }'> <img style="width:20%;height20%"  src="~/css/patch-plus-fill.svg"/> </a></th> </tr>
+            <tr style="background-color:#00AFB9"> <th class="text-white">Фамилия</th> <th class="text-white">Имя</th> <th class="text-white">Отчество</th> <th class="text-white">Дата Рождения</th> <th></th> <th><a asp-controller="Student" asp-action="AddStudentView" asp-all-route-data='new Dictionary<string,string> { { "GroupId", ViewBag.GroupId.ToString() } }'> <img style="width:20%;height20%;margin-left:8%"  src="~/css/patch-plus-fill.svg"/> </a></th> </tr>
             @foreach (var student in Model)
             {
                 DateOnly currentDate = new DateOnly(student.DateOfBirth.Year, student.DateOfBirth.Month, student.DateOfBirth.Day);
 
-                <tr> <td>@student.Surname</td> <td style="color:#85004B">@student.Name</td> <td>@student.Patronymic</td> <td style="color:#85004B">@currentDate</td> <td></td> <td><a class="btn btn-sm text-white" style="background-color:#E6399B" asp-controller="Student" asp-action="DeleteStudent" asp-all-route-data='new Dictionary<string,string> { { "StudentId", @student.Id.ToString() },{"GroupId", @ViewBag.GroupId.ToString()} }'>Удалить</a></td> </tr>
+                <tr> <td>@student.Surname</td> <td style="color:#85004B">@student.Name</td> <td>@student.Patronymic</td> <td style="color:#85004B">@currentDate</td> <td></td> <td><a class="btn btn-danger text-white" style="background-color:#F07167" asp-controller="Student" asp-action="DeleteStudent" asp-all-route-data='new Dictionary<string,string> { { "StudentId", @student.Id.ToString() },{"GroupId", @ViewBag.GroupId.ToString()} }'>Удалить</a></td> </tr>
             }
         </table>
     }

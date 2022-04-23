@@ -2,14 +2,61 @@
 
 @using (Html.BeginForm("CreateStudent", "Student", FormMethod.Get))
 {
-   <input type="hidden" asp-for="GroupId" value="@Model.GroupId"/>
-   <label>Имя</label>
-   <input type="text" asp-for="Name"/>
-   <label>Фамилия</label>
-   <input type="text" asp-for="Surname"/>
-   <label>Отчество</label>
-   <input type="text" asp-for="Patronymic"/>
-   <label>Дата рождения</label>
-   <input type="date" asp-for="DateOfBirth"/>
-   <input type="submit" value="Добавить"/>
+    <div class="container" style="margin-top:5%">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+
+                <div class="row" style="margin-bottom:15px">
+                    <div>
+                        <h3 style="margin-bottom:10px">Введите данные</h3>
+                        <input type="hidden" asp-for="GroupId" value="@Model.GroupId" />
+                        <label>Имя</label>
+                        <input class="form-control myInput" type="text" asp-for="Name" />
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom:15px">
+                    <div>
+                        <label>Фамилия</label>
+                        <input class="form-control myInput"  type="text" asp-for="Surname" />
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom:15px">
+                    <div>
+                        <label>Отчество</label>
+                        <input class="form-control myInput" type="text" asp-for="Patronymic" />
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom:15px">
+                    <div>
+                        <label>Дата рождения</label>
+                        <input class="form-control myInput" type="date" asp-for="DateOfBirth" />
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom:15px">
+                    <div>
+                        <input class="btn btn-success myBtn myInput" type="submit" value="Добавить" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </div>
+
+
+
+   
+
+
+
+   
+
+   
+
+   
 }
