@@ -1,0 +1,8 @@
+﻿@model IEnumerable<Visit> 
+
+@{
+    foreach (var visit in Model)
+    {
+        <h1>@visit.Student.Name @visit.Student.Group.Name @visit.Attended</h1>
+    }
+}

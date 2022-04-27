@@ -1,0 +1,41 @@
+﻿@using StudentControl.Data.Repositories.IRepositories
+@model IEnumerable<Lesson>
+@inject IGrupRepository Group
+
+@using (Html.BeginForm("AddLesson", "Lesson", FormMethod.Post))
+{
+@Html.DropDownList("GroupId",new SelectList(Group.GetAll(),"Id","Name"))
+<input type="text" name="LessonName" placeholder="название занятия"/>
+<input type="text" name="ClassRoom" placeholder="аудитория"/>
+<input type="submit"/>
+}
+
+
+
+<div>
+    @{
+        if (Model.ToList().Count <= 0)
+        {
+            <h1>Занятия не найдены</h1>
+        }
+        else
+        {
+            foreach (var lesson in Model)
+            {
+                <div class="iconblock-2">
+                    <a style="text-decoration:none" asp-controller="Lesson" asp-action="Visits" asp-all-route-data='new Dictionary<string,string> { { "LessonId", @lesson.Id.ToString() } }'>
+                    <h3>@lesson.Name</h3>
+                    <p>@lesson.Group.Name</p>
+                    <p>Аудитория: @lesson.Сlassroom</p>
+                    </a>
+                    @using (Html.BeginForm("", "", FormMethod.Get))
+                    {
+                        <input name="id" type="hidden" value="@lesson.Id"/>
+                        <input type="submit" value="удалить" class="btn btn-danger myBtnDelete" />
+                    }
+                </div>
+            }
+        }
+    }
+</div>
+    

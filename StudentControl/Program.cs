@@ -17,6 +17,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 
 builder.Services.AddTransient<IStudentRepository,StudentRepository>();
 builder.Services.AddTransient<IGrupRepository,GroupRepository>();
+builder.Services.AddTransient<ILessonRepository, LessonRepository>();
 
 builder.Services.AddControllersWithViews();
 

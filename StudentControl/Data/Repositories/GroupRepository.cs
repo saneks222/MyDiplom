@@ -60,7 +60,8 @@ namespace StudentControl.Data.Repositories
             if(param==null|| param=="")
                 return GetAll();
 
-            var result = _Db.Groups.Where(x => x.Name.ToLower().Contains(param));
+            var filter = param.ToLower();
+            var result = _Db.Groups.Where(x => x.Name.ToLower().Contains(filter));
             return result;
         }
 
