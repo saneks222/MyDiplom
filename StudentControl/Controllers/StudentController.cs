@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StudentControl.Data.Repositories.IRepositories;
 using StudentControl.Models;
 using StudentControl.Models.ViewModel;
@@ -13,12 +14,12 @@ namespace StudentControl.Controllers
         {
             _studentRepository = studentRepository;
         }
-
+        [Authorize]
         public IActionResult Index()
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult ShowGroup(Guid GroupId)
         {
             if(GroupId==Guid.Empty)
@@ -28,12 +29,12 @@ namespace StudentControl.Controllers
 
             return View(_studentRepository.GetAll(GroupId));
         }
-
+        [Authorize]
         public IActionResult AddStudentView(string GroupId) 
         {
             return View(new StudentVM() { GroupId=GroupId});
         }
-
+        [Authorize]
         public IActionResult CreateStudent(StudentVM student) 
         {
             if(!ModelState.IsValid)
@@ -50,7 +51,7 @@ namespace StudentControl.Controllers
 
             return RedirectToAction("ShowGroup", "Student",new { GroupId= new Guid(student.GroupId)});
         }
-
+        [Authorize]
         public IActionResult DeleteStudent(string StudentId, string GroupId) 
         {
             if(StudentId==null|| StudentId==""|| GroupId == null || GroupId == "")

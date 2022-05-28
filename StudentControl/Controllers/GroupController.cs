@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StudentControl.Data.Repositories.IRepositories;
 using StudentControl.Models;
 
@@ -12,19 +13,19 @@ namespace StudentControl.Controllers
         {
             _grupRepository = grupRepository;
         }
-
+        [Authorize]
         public IActionResult Index()
         {
             return View();
         }
-
+        [Authorize]
         public  IActionResult Groups() 
         {
             return View(_grupRepository.GetAll()); 
         }
 
 
-
+        [Authorize]
         public IActionResult FilterGroups(string filterParam) 
         {
            if(filterParam==null || filterParam=="")
@@ -32,7 +33,7 @@ namespace StudentControl.Controllers
 
            return View("Groups", _grupRepository.GetFilterRange(filterParam));
         }
-
+        [Authorize]
         public IActionResult AddGroups(string name) 
         {
             if(name==""||name==null)
@@ -46,6 +47,7 @@ namespace StudentControl.Controllers
             return RedirectToAction("Groups");
         }
 
+        [Authorize]
         public IActionResult DeleteGroup(Guid id) 
         {
             if(id==Guid.Empty)

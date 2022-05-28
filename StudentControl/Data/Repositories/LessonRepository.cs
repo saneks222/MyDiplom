@@ -80,5 +80,27 @@ namespace StudentControl.Data.Repositories
 
             return visit;
         }
+
+        public string RemoveLesson(Guid id)
+        {
+            Lesson lesson = _DB.Lessons.FirstOrDefault(x=>x.Id==id);
+            _DB.Lessons.Remove(lesson);
+            _DB.SaveChanges();
+
+            return lesson.Id.ToString();
+        }
+
+        public string UpdateVisit(List<Visit> visits)
+        {
+            foreach (var visit in visits) 
+            {
+                var currentVisit = _DB.Visits.FirstOrDefault(x=>x.Id==visit.Id);
+                currentVisit.Attended = visit.Attended;
+                _DB.Visits.Update(currentVisit);
+            }
+            _DB.SaveChanges();
+
+            return "200OK";
+        }
     }
 }

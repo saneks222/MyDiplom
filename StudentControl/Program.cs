@@ -6,6 +6,8 @@ using StudentControl.Data.Repositories.IRepositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+
 // Add services to the container.(gitTest)
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -45,7 +47,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Group}/{action=Groups}/{id?}");
 app.MapRazorPages();
 
 app.Run();
